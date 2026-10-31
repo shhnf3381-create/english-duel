@@ -274,7 +274,147 @@ $('#pSave').onclick = function () {
 document.querySelectorAll('.back').forEach(function (b) { b.onclick = function () { show('home'); }; });
 $('#bProf').onclick = openProfile;
 $('#bSet').onclick = function () { refreshSound(); show('settings'); };
-$('#bSolo').onclick = function () { toast('التعلم الفردي قادم قريباً 📘'); };
+/* ---------- Solo learning ---------- */
+function normS(s) { return String(s || '').toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/[.,!?;:"]/g, '').replace(/\s+/g, ' ').trim(); }
+function shuf(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+var so = { list: [], i: 0, score: 0, locked: false, mode: 'q' };
+function soShow(menu) { $('#soMenu').style.display = menu ? 'block' : 'none'; $('#soPlay').style.display = menu ? 'none' : 'block'; }
+function openSolo() {
+  var box = $('#soLevels'); box.innerHTML = '';
+  levels.forEach(function (l) {
+    var b = el('button', 'chip2', 'المرحلة ' + l.id + ' · ' + l.name);
+    b.onclick = function () { startSolo(l.id); };
+    box.appendChild(b);
+  });
+  $('#soRev').textContent = '🔁 مراجعة أخطائي (' + store.get('ed_review', []).length + ')';
+  soShow(true); show('solo');
+}
+function startSolo(id) {
+  fetch('/api/solo/' + id).then(function (r) { return r.json(); }).then(function (d) {
+    so.list = shuf(d.questions).slice(0, 10); so.i = 0; so.score = 0; so.mode = 'q';
+    soShow(false); soQuestion();
+  }).catch(function () { toast('تعذر تحميل الأسئلة'); });
+}
+function soInfo(card, title, it) {
+  card.innerHTML = '';
+  if (title) card.appendChild(el('div', 't', title));
+  card.appendChild(el('div', 'mut', so.mode === 'r' ? 'الكلمة / الجملة' : 'الإجابة الصحيحة'));
+  card.appendChild(el('div', 'ans', it.answer));
+  if (it.translation) { var t = el('div', 'ex', it.translation); t.dir = 'auto'; card.appendChild(t); }
+  if (it.example) { var e = el('div', 'ex', '💡 ' + it.example); e.dir = 'auto'; card.appendChild(e); }
+  var sp = el('button', 'btn alt', '🔊 استمع للنطق'); sp.style.marginTop = '12px'; sp.style.fontSize = '16px';
+  sp.onclick = function () { speak(it.answer); };
+  card.appendChild(sp);
+  card.style.display = 'block';
+}
+function soQuestion() {
+  if (so.i >= so.list.length) return soEnd();
+  so.locked = false;
+  var q = so.list[so.i];
+  $('#soNum').textContent = 'السؤال ' + (so.i + 1) + ' / ' + so.list.length;
+  $('#soScore').textContent = '⭐ ' + so.score;
+  $('#soProg').style.width = (so.i / so.list.length * 100) + '%';
+  var pr = $('#soPrompt'); pr.textContent = q.prompt; pr.dir = 'auto';
+  $('#soRes').style.display = 'none'; $('#soNext').style.display = 'none';
+  var box = $('#soAns'); box.innerHTML = '';
+  if (q.words) soBuild(q, box);
+  else shuf(q.options || []).forEach(function (o) {
+    var b = el('button', 'opt', o); b.dir = 'auto'; b.dataset.v = o;
+    b.onclick = function () { soAnswer(q, o); };
+    box.appendChild(b);
+  });
+}
+function soBuild(q, box) {
+  var items = shuf(q.words).map(function (w) { return { w: w, used: false }; });
+  var sel = [];
+  var line = el('div', 'buildline'); line.dir = 'ltr';
+  var bank = el('div', 'bank'); bank.dir = 'ltr';
+  var ok = el('button', 'btn', 'تأكيد الإجابة');
+  function draw() {
+    line.innerHTML = ''; bank.innerHTML = '';
+    sel.forEach(function (it) {
+      var b = el('button', 'chip', it.w);
+      b.onclick = function () { if (so.locked) return; it.used = false; sel = sel.filter(function (x) { return x !== it; }); draw(); };
+      line.appendChild(b);
+    });
+    items.forEach(function (it) {
+      var b = el('button', 'chip' + (it.used ? ' ghost' : ''), it.w);
+      b.disabled = it.used || so.locked;
+      b.onclick = function () { if (so.locked) return; it.used = true; sel.push(it); draw(); };
+      bank.appendChild(b);
+    });
+    ok.disabled = so.locked || sel.length === 0;
+  }
+  ok.onclick = function () { if (so.locked || !sel.length) return; soAnswer(q, sel.map(function (x) { return x.w; }).join(' ')); draw(); };
+  box.appendChild(line); box.appendChild(bank); box.appendChild(ok);
+  draw();
+}
+function soAnswer(q, v) {
+  if (so.locked) return;
+  so.locked = true;
+  var acc = [q.answer].concat(q.accepted || []);
+  var ok = acc.some(function (a) { return normS(a) === normS(v); });
+  if (ok) { so.score++; sfxOk(); }
+  else {
+    sfxBad();
+    var rev = store.get('ed_review', []);
+    if (!rev.some(function (x) { return x.answer === q.answer; })) rev.push({ answer: q.answer, translation: q.translation, example: q.example });
+    store.set('ed_review', rev.slice(-300));
+  }
+  $('#soScore').textContent = '⭐ ' + so.score;
+  $('#soAns').querySelectorAll('.opt').forEach(function (b) {
+    b.disabled = true;
+    if (b.dataset.v === q.answer) b.classList.add('right');
+    else if (b.dataset.v === v) b.classList.add('wrong');
+  });
+  soInfo($('#soRes'), ok ? '🎉 أحسنت!' : '❌ إجابة خاطئة', q);
+  $('#soNext').style.display = 'block';
+  $('#soNext').textContent = so.i + 1 >= so.list.length ? 'عرض النتيجة' : 'التالي ←';
+}
+function soEnd() {
+  $('#soProg').style.width = '100%';
+  $('#soPrompt').textContent = '🏁 انتهى التدريب';
+  $('#soAns').innerHTML = '';
+  var r = $('#soRes'); r.innerHTML = '';
+  r.appendChild(el('div', 't', 'نتيجتك: ' + so.score + ' / ' + so.list.length));
+  r.appendChild(el('div', 'mut', 'أخطاؤك حُفظت في «مراجعة أخطائي»'));
+  r.style.display = 'block';
+  $('#soNext').style.display = 'none';
+}
+function startReview() {
+  var rev = store.get('ed_review', []);
+  if (!rev.length) return toast('لا توجد كلمات للمراجعة بعد 👏');
+  so.list = shuf(rev); so.i = 0; so.mode = 'r';
+  soShow(false); soCard();
+}
+function soCard() {
+  $('#soAns').innerHTML = '';
+  if (so.i >= so.list.length) {
+    $('#soProg').style.width = '100%';
+    $('#soPrompt').textContent = '👏 انتهت المراجعة';
+    $('#soRes').style.display = 'none'; $('#soNext').style.display = 'none';
+    return;
+  }
+  var it = so.list[so.i];
+  $('#soNum').textContent = 'مراجعة ' + (so.i + 1) + ' / ' + so.list.length;
+  $('#soScore').textContent = '';
+  $('#soProg').style.width = (so.i / so.list.length * 100) + '%';
+  $('#soPrompt').textContent = 'كلمة للمراجعة 🔁';
+  soInfo($('#soRes'), '', it);
+  var known = el('button', 'btn green', 'عرفتها ✅ احذفها من القائمة');
+  known.style.marginTop = '12px';
+  known.onclick = function () {
+    store.set('ed_review', store.get('ed_review', []).filter(function (x) { return x.answer !== it.answer; }));
+    so.i++; soCard();
+  };
+  $('#soRes').appendChild(known);
+  $('#soNext').style.display = 'block';
+  $('#soNext').textContent = 'التالي ←';
+}
+$('#bSolo').onclick = function () { if (needName()) return; openSolo(); };
+$('#soRev').onclick = startReview;
+$('#soNext').onclick = function () { so.i++; if (so.mode === 'r') soCard(); else soQuestion(); };
+$('#soQuit').onclick = openSolo;
 function refreshSound() { $('#sSound').textContent = sound ? '🔊 الصوت: يعمل' : '🔇 الصوت: متوقف'; }
 $('#sSound').onclick = function () { sound = !sound; store.set('ed_sound', sound); refreshSound(); };
 $('#bJoin').onclick = function () { if (needName()) return; $('#jCode').value = ''; show('join'); };
