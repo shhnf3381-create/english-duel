@@ -244,6 +244,7 @@ input:focus{border-color:var(--p)}
 <script>
 // English Duel - Client
 // Developed by BADR EDDIN LEMMOUCHI | من تطوير بدر الدين لموشي
+window.onerror = function (m, s, l) { var d = document.createElement('div'); d.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#dc2626;color:#fff;padding:8px;font-size:12px;z-index:99;direction:ltr'; d.textContent = 'JS error: ' + m + ' (line ' + l + ')'; document.body.appendChild(d); };
 var $ = function (s) { return document.querySelector(s); };
 function el(t, c, txt) { var e = document.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; }
 var store = {
