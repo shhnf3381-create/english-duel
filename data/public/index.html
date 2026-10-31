@@ -179,6 +179,14 @@ input:focus{border-color:var(--p)}
   <div class="card center"><div id="gTie" class="tie"></div><div id="gPrompt" class="prompt">استعد...</div></div>
   <div id="gAns"></div>
   <div id="gMsg" class="msg"></div>
+<style>
+#rBar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px 0 12px}
+#rBar button{font-size:26px;border:0;background:#fff;border-radius:14px;padding:6px 10px;box-shadow:0 3px 0 #c7d2fe;cursor:pointer}
+#rBar button:active{transform:translateY(2px)}
+.fl{position:fixed;bottom:150px;font-size:44px;z-index:20;pointer-events:none;animation:flo 2s ease-out forwards}
+@keyframes flo{from{opacity:1;transform:translateY(0) scale(.6)}to{opacity:0;transform:translateY(-220px) scale(1.3)}}
+</style>
+<div id="rBar"></div>
   <div id="gRes" class="card res" style="display:none"></div>
 </div>
 
