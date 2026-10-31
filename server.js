@@ -386,6 +386,18 @@ io.on('connection', (socket) => {
     if (room.rematch.size >= 2 && room.players.every((p) => p.connected)) startMatch(room, room.level);
   });
 
+    socket.on('reaction', (e) => {
+    const room = rooms.get(socket.data.code);
+    if (!room) return;
+    const allowed = ['😂', '😎', '😮', '😢', '👏', '🔥', '😡', '👍'];
+    if (!allowed.includes(e)) return;
+    const p = room.players.find((x) => x.token === socket.data.token);
+    if (!p) return;
+    const now = Date.now();
+    if (p.lastReact && now - p.lastReact < 700) return;
+    p.lastReact = now;
+    io.to(room.code).emit('reaction', { from: p.id, emoji: e });
+  });
   socket.on('leave_room', () => {
     const room = rooms.get(socket.data.code);
     if (!room) return;
