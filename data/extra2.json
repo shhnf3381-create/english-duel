@@ -1,0 +1,45 @@
+{
+  "levels": {
+    "2": {
+      "questions": [
+        {"type":"choice","prompt":"ما معنى «يستيقظ»؟","options":["Wake up","Go out","Sit down","Come in"],"answer":"Wake up","translation":"يستيقظ","example":"I wake up at seven. = أستيقظ في السابعة."},
+        {"type":"choice","prompt":"ما معنى «يبحث عن»؟","options":["Look for","Wake up","Go out","Come back"],"answer":"Look for","translation":"يبحث عن","example":"I am looking for my keys. = أبحث عن مفاتيحي."},
+        {"type":"choice","prompt":"ما معنى «عادةً»؟","options":["Usually","Never","Yesterday","Tomorrow"],"answer":"Usually","translation":"عادةً","example":"I usually walk to school. = أمشي عادةً إلى المدرسة."},
+        {"type":"choice","prompt":"ما معنى «أبداً»؟","options":["Never","Always","Sometimes","Often"],"answer":"Never","translation":"أبداً","example":"I never drink coffee at night. = لا أشرب القهوة أبداً في الليل."},
+        {"type":"choice","prompt":"ما معنى «أحياناً»؟","options":["Sometimes","Always","Never","Today"],"answer":"Sometimes","translation":"أحياناً","example":"Sometimes I cook dinner. = أحياناً أطبخ العشاء."},
+        {"type":"choice","prompt":"ما معنى «مشغول»؟","options":["Busy","Free","Late","Early"],"answer":"Busy","translation":"مشغول","example":"I am busy now. = أنا مشغول الآن."},
+        {"type":"choice","prompt":"ما معنى «متأخر»؟","options":["Late","Early","Fast","Slow"],"answer":"Late","translation":"متأخر","example":"I am late for class. = أنا متأخر عن الحصة."},
+        {"type":"choice","prompt":"ما معنى «يبدأ»؟","options":["Start","Stop","Finish","Close"],"answer":"Start","translation":"يبدأ","example":"The class starts at nine. = تبدأ الحصة في التاسعة."},
+        {"type":"choice","prompt":"ما معنى «يسأل»؟","options":["Ask","Answer","Tell","Say"],"answer":"Ask","translation":"يسأل","example":"I ask the teacher a question. = أسأل المعلم سؤالاً."},
+        {"type":"choice","prompt":"ما معنى: I don't understand؟","options":["أنا لا أفهم","أنا لا أعرف","أنا لا أحب","أنا لا أريد"],"answer":"أنا لا أفهم","translation":"أنا لا أفهم.","example":"I don't understand this word. = لا أفهم هذه الكلمة."},
+        {"type":"complete","prompt":"She ___ to work by bus.","options":["goes","go","going","gone"],"answer":"goes","translation":"هي تذهب إلى العمل بالحافلة.","example":"He goes to school by car. = هو يذهب إلى المدرسة بالسيارة."},
+        {"type":"complete","prompt":"They ___ playing football now.","options":["are","is","am","be"],"answer":"are","translation":"هم يلعبون كرة القدم الآن.","example":"We are playing outside. = نحن نلعب في الخارج."},
+        {"type":"complete","prompt":"I ___ breakfast every morning.","options":["have","has","am","is"],"answer":"have","translation":"أتناول الفطور كل صباح.","example":"She has breakfast at eight. = هي تتناول الفطور في الثامنة."},
+        {"type":"complete","prompt":"He ___ English very well.","options":["speaks","speak","speaking","spoke"],"answer":"speaks","translation":"هو يتكلم الإنجليزية جيداً.","example":"She speaks three languages. = هي تتكلم ثلاث لغات."},
+        {"type":"complete","prompt":"Where ___ you from?","options":["are","is","am","do"],"answer":"are","translation":"من أين أنت؟","example":"Where are they from? = من أين هم؟"},
+        {"type":"complete","prompt":"What ___ you doing?","options":["are","is","am","do"],"answer":"are","translation":"ماذا تفعل؟","example":"What are you eating? = ماذا تأكل؟"},
+        {"type":"complete","prompt":"I ___ like coffee.","options":["don't","doesn't","isn't","aren't"],"answer":"don't","translation":"لا أحب القهوة.","example":"I don't like cold tea. = لا أحب الشاي البارد."},
+        {"type":"complete","prompt":"She ___ like fish.","options":["doesn't","don't","isn't","aren't"],"answer":"doesn't","translation":"هي لا تحب السمك.","example":"He doesn't like noise. = هو لا يحب الضجيج."},
+        {"type":"complete","prompt":"We ___ to the market yesterday.","options":["went","go","goes","going"],"answer":"went","translation":"ذهبنا إلى السوق أمس.","example":"They went home early. = ذهبوا إلى المنزل مبكراً."},
+        {"type":"complete","prompt":"I ___ my homework last night.","options":["finished","finish","finishes","finishing"],"answer":"finished","translation":"أنهيت واجبي ليلة أمس.","example":"She finished her work. = أنهت عملها."},
+        {"type":"complete","prompt":"There ___ two books on the table.","options":["are","is","am","be"],"answer":"are","translation":"يوجد كتابان على الطاولة.","example":"There are three chairs here. = توجد ثلاثة كراسٍ هنا."},
+        {"type":"build","prompt":"رتّب الجملة: إلى أين تذهب؟","words":["Where","are","you","going"],"answer":"Where are you going?","translation":"إلى أين أنت ذاهب؟","example":"Where is he going? = إلى أين هو ذاهب؟"},
+        {"type":"build","prompt":"رتّب الجملة: أريد كوب قهوة","words":["I","want","a","cup","of","coffee"],"answer":"I want a cup of coffee.","translation":"أريد كوباً من القهوة.","example":"I want a cup of tea. = أريد كوباً من الشاي."},
+        {"type":"build","prompt":"رتّب الجملة: هي تعمل في مستشفى","words":["She","works","in","a","hospital"],"answer":"She works in a hospital.","translation":"هي تعمل في مستشفى.","example":"He works in a bank. = هو يعمل في بنك."},
+        {"type":"build","prompt":"رتّب الجملة: أستيقظ مبكراً","words":["I","wake","up","early"],"answer":"I wake up early.","translation":"أستيقظ مبكراً.","example":"I usually wake up early. = أستيقظ عادةً مبكراً."},
+        {"type":"build","prompt":"رتّب الجملة: هل تتكلم الإنجليزية؟","words":["Do","you","speak","English"],"answer":"Do you speak English?","translation":"هل تتكلم الإنجليزية؟","example":"Do you speak Arabic? = هل تتكلم العربية؟"},
+        {"type":"build","prompt":"رتّب الجملة: ما اسمه؟","words":["What","is","his","name"],"answer":"What is his name?","translation":"ما اسمه؟","example":"What is her name? = ما اسمها؟"},
+        {"type":"build","prompt":"رتّب الجملة: أحتاج إلى مساعدتك","words":["I","need","your","help"],"answer":"I need your help.","translation":"أحتاج إلى مساعدتك.","example":"Can I help you? = هل أستطيع مساعدتك؟"},
+        {"type":"build","prompt":"رتّب الجملة: هو لا يحب السمك","words":["He","does","not","like","fish"],"answer":"He does not like fish.","translation":"هو لا يحب السمك.","example":"She does not like milk. = هي لا تحب الحليب."},
+        {"type":"conversation","prompt":"Excuse me, where is the bus station?","options":["It is next to the bank.","I like buses.","Yes, I am.","It is five o'clock."],"answer":"It is next to the bank.","translation":"لو سمحت، أين محطة الحافلات؟ — إنها بجانب البنك.","example":"It is on the left. = إنها على اليسار."},
+        {"type":"conversation","prompt":"Would you like some tea?","options":["Yes, please.","It is Monday.","I am fine.","Goodbye!"],"answer":"Yes, please.","translation":"هل تريد بعض الشاي؟ — نعم، من فضلك.","example":"No, thank you. = لا، شكراً."},
+        {"type":"conversation","prompt":"What time is it?","options":["It is half past four.","It is a clock.","I am fine.","Yes, please."],"answer":"It is half past four.","translation":"كم الساعة الآن؟ — إنها الرابعة والنصف.","example":"It is ten o'clock. = إنها العاشرة."},
+        {"type":"conversation","prompt":"What do you do?","options":["I am a teacher.","I am fine.","It is red.","I am from Egypt."],"answer":"I am a teacher.","translation":"ماذا تعمل؟ — أنا معلم.","example":"I am a student. = أنا طالب."},
+        {"type":"conversation","prompt":"Can you help me?","options":["Sure, what do you need?","Yes, I am a student.","It is blue.","Good night."],"answer":"Sure, what do you need?","translation":"هل تستطيع مساعدتي؟ — بالتأكيد، ماذا تحتاج؟","example":"Of course, I can help. = بالطبع، أستطيع المساعدة."},
+        {"type":"conversation","prompt":"How much is this?","options":["It is ten dollars.","It is Monday.","I am fine.","Yes, please."],"answer":"It is ten dollars.","translation":"بكم هذا؟ — إنه بعشرة دولارات.","example":"It is very cheap. = إنه رخيص جداً."},
+        {"type":"conversation","prompt":"I'm sorry, I'm late.","options":["Don't worry, come in.","It is blue.","I like tea.","Nice to meet you."],"answer":"Don't worry, come in.","translation":"أنا آسف، لقد تأخرت. — لا تقلق، تفضل بالدخول.","example":"It's okay. = لا بأس."},
+        {"type":"conversation","prompt":"What did you do yesterday?","options":["I visited my friend.","I will visit my friend.","I visit my friend now.","I am a friend."],"answer":"I visited my friend.","translation":"ماذا فعلت أمس؟ — زرت صديقي.","example":"I stayed at home. = بقيت في المنزل."}
+      ]
+    }
+  }
+}
