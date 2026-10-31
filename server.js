@@ -19,6 +19,12 @@ const rooms = new Map();
 
 app.use(express.static(path.join(__dirname, 'data', 'public')));
 app.get('/health', (req, res) => res.send('ok'));
+app.get('/api/solo/:level', (req, res) => {
+  const data = loadData();
+  const lv = data.levels[req.params.level];
+  if (!lv) return res.status(404).json({ error: 'not found' });
+  res.json({ name: lv.name, questions: lv.questions });
+});
 
 function loadData() {
   const dir = path.join(__dirname, 'data');
