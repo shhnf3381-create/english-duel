@@ -679,7 +679,24 @@ $('#fRe').onclick = function () { socket.emit('rematch'); $('#fRe').disabled = t
 socket.on('rematch_status', function (d) { if (d.count === 1 && !$('#fRe').disabled) $('#fReS').textContent = 'صديقك يريد إعادة المباراة!'; });
 $('#fHome').onclick = function () { socket.emit('leave_room'); clearRoom(); show('home'); };
 
-refreshHome();
+/* ---------- Reactions ---------- */
+(function () {
+  var EM = ['😂', '😎', '😮', '😢', '👏', '🔥', '😡', '👍'];
+  var bar = $('#rBar');
+  EM.forEach(function (e) {
+    var b = el('button', '', e);
+    b.onclick = function () { socket.emit('reaction', e); };
+    bar.appendChild(b);
+  });
+})();
+socket.on('reaction', function (d) {
+  var f = el('div', 'fl', d.emoji);
+  f.style.left = (d.from === myId ? 65 : 15) + '%';
+  document.body.appendChild(f);
+  setTimeout(function () { f.remove(); }, 2000);
+  if (d.from !== myId) beep(520, 0.08);
+});
+  refreshHome();
 </script>
 </body>
 </html>
