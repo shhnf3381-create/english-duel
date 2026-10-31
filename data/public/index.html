@@ -417,4 +417,93 @@ socket.on('question', function (d) {
   locked = false; lastBtn = null;
   $('#gRes').style.display = 'none'; $('#gMsg').textContent = '';
   $('#gTie').textContent = d.tiebreak ? '⚡ جولة فاصلة!' : '';
-  $('#gNum').textContent = 'السؤال ' + d
+  $('#gNum').textContent = 'السؤال ' + d.index + ' / ' + d.total;
+  $('#gProg').style.width = ((d.index - 1) / d.total * 100) + '%';
+  var q = d.q;
+  var pr = $('#gPrompt'); pr.textContent = q.prompt; pr.dir = 'auto';
+  var box = $('#gAns'); box.innerHTML = '';
+  if (q.words) renderBuild(q, box);
+  else (q.options || []).forEach(function (o) {
+    var b = el('button', 'opt', o); b.dir = 'auto'; b.dataset.v = o;
+    b.onclick = function () { if (locked) return; lastBtn = b; send(o); };
+    box.appendChild(b);
+  });
+  endAt = Date.now() + d.endsInMs;
+  clearInterval(timerInt); tick(); timerInt = setInterval(tick, 200);
+  if (cur !== 'game') show('game');
+});
+socket.on('answer_wrong', function () {
+  sfxBad();
+  if (lastBtn) lastBtn.classList.add('wrong');
+  lockUI('إجابة خاطئة ❌ ننتظر صديقك...');
+});
+socket.on('opponent_wrong', function () { toast('صديقك أخطأ! أمامك فرصة 😉'); });
+
+socket.on('round_result', function (d) {
+  clearInterval(timerInt);
+  locked = true;
+  $('#gAns').querySelectorAll('button').forEach(function (b) {
+    b.disabled = true;
+    if (b.dataset.v === d.correctAnswer) b.classList.add('right');
+  });
+  $('#gMsg').textContent = '';
+  var list = d.scores;
+  scoreList($('#gScores'), list.map(function (p) {
+    var old = room && room.players.find(function (x) { return x.id === p.id; });
+    return { id: p.id, name: p.name, avatar: p.avatar, score: p.score, connected: old ? old.connected : true };
+  }));
+  if (d.winnerId) {
+    var w = $('#gScores').querySelector('[data-id="' + d.winnerId + '"]');
+    if (w) w.classList.add('pop');
+  }
+  var title = d.winnerId === myId ? '🎉 أحسنت! حصلت على النقطة' : d.winnerId ? '😎 صديقك سبقك هذه المرة' : '⏱️ لم يجب أحد بشكل صحيح';
+  if (d.winnerId === myId) sfxOk(); else sfxBad();
+  var r = $('#gRes'); r.innerHTML = '';
+  r.appendChild(el('div', 't', title));
+  r.appendChild(el('div', 'mut', 'الإجابة الصحيحة'));
+  r.appendChild(el('div', 'ans', d.correctAnswer));
+  if (d.translation) { var t = el('div', 'ex', d.translation); t.dir = 'auto'; r.appendChild(t); }
+  if (d.example) { var e = el('div', 'ex', '💡 ' + d.example); e.dir = 'auto'; r.appendChild(e); }
+  var sp = el('button', 'btn alt', '🔊 استمع للنطق'); sp.style.marginTop = '12px'; sp.style.fontSize = '16px';
+  sp.onclick = function () { speak(d.correctAnswer); };
+  r.appendChild(sp);
+  r.style.display = 'block';
+  if (cur !== 'game') show('game');
+});
+
+/* ---------- Game over ---------- */
+function listItems(box, arr, withEx) {
+  box.innerHTML = '';
+  if (!arr.length) { box.appendChild(el('div', 'mut', 'لا شيء هنا 👏')); return; }
+  arr.forEach(function (it) {
+    var d = el('div', 'li');
+    d.appendChild(el('div', 'e', it.answer));
+    var tr = el('div', 'tr', it.translation || ''); tr.dir = 'auto'; d.appendChild(tr);
+    box.appendChild(d);
+  });
+}
+socket.on('game_over', function (d) {
+  clearInterval(timerInt);
+  var b = $('#fBanner');
+  if (d.tie) b.textContent = '🤝 تعادل!';
+  else if (d.winnerId === myId) { b.textContent = '🏆 فزت!'; sfxOk(); }
+  else b.textContent = '💪 فاز صديقك';
+  scoreList($('#fScores'), d.players);
+  listItems($('#fLearn'), d.learned);
+  var me = d.players.find(function (p) { return p.id === myId; });
+  var missed = me ? me.missed : [];
+  listItems($('#fMiss'), missed);
+  var rev = store.get('ed_review', []);
+  missed.forEach(function (m) { if (!rev.some(function (x) { return x.answer === m.answer; })) rev.push({ answer: m.answer, translation: m.translation, example: m.example }); });
+  store.set('ed_review', rev.slice(-300));
+  $('#fRe').disabled = false; $('#fReS').textContent = '';
+  show('final');
+});
+$('#fRe').onclick = function () { socket.emit('rematch'); $('#fRe').disabled = true; $('#fReS').textContent = 'بانتظار صديقك...'; };
+socket.on('rematch_status', function (d) { if (d.count === 1 && !$('#fRe').disabled) $('#fReS').textContent = 'صديقك يريد إعادة المباراة!'; });
+$('#fHome').onclick = function () { socket.emit('leave_room'); clearRoom(); show('home'); };
+
+refreshHome();
+</script>
+</body>
+</html>
