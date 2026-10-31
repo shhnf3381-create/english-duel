@@ -11,6 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 require('./accounts')(io);
+require('./friends')(io);
 
 const DEVELOPER = 'BADR EDDIN LEMMOUCHI';
 const ROUND_SECONDS = 20;
