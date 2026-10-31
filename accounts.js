@@ -181,3 +181,15 @@ module.exports = function (io) {
     });
   });
 };
+module.exports.record = async function (list) {
+  if (!users) return;
+  for (const r of list) {
+    if (!r.username) continue;
+    try {
+      await users.updateOne(
+        { username: r.username },
+        { $inc: { games: 1, wins: r.win ? 1 : 0, xp: r.xp } }
+      );
+    } catch (e) {}
+  }
+};
