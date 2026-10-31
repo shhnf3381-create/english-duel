@@ -17,7 +17,7 @@ const REVEAL_MS = 4500;
 const MAX_TIEBREAKS = 3;
 const rooms = new Map();
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'data', 'public')));
 app.get('/health', (req, res) => res.send('ok'));
 
 function loadData() {
