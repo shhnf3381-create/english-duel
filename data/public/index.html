@@ -712,6 +712,91 @@ socket.on('reaction', function (d) {
   setTimeout(function () { f.remove(); }, 2000);
   if (d.from !== myId) beep(520, 0.08);
 });
+/* ---------- Accounts ---------- */
+var account = null;
+var accTok = store.get('ed_acc_token', null);
+var aReg = false;
+
+function refreshHome() {
+  $('#hello').textContent = account
+    ? ('أهلاً ' + account.avatar + ' ' + account.display + ' (@' + account.username + ')')
+    : 'سجّل الدخول لتبدأ اللعب';
+}
+function setAccount(me) {
+  account = me;
+  prof.name = me.display;
+  prof.avatar = me.avatar;
+  store.set('ed_prof', prof);
+  refreshHome();
+}
+function needName() {
+  if (account) return false;
+  toast('سجّل الدخول أولاً');
+  openAuth();
+  return true;
+}
+function setReg(r) {
+  aReg = r;
+  $('#aExtra').style.display = r ? 'block' : 'none';
+  $('#aGo').textContent = r ? 'إنشاء الحساب' : 'دخول';
+  $('#aSwitch').textContent = r ? 'لدي حساب؟ تسجيل الدخول' : 'ليس لدي حساب؟ إنشاء حساب';
+}
+function openAuth() {
+  setReg(false);
+  $('#aUser').value = '';
+  $('#aPin').value = '';
+  show('auth');
+}
+$('#aSwitch').onclick = function () { setReg(!aReg); };
+$('#aGo').onclick = function () {
+  var u = $('#aUser').value.trim().toLowerCase();
+  var p = $('#aPin').value.trim();
+  if (!u || !p) return toast('أدخل اسم المستخدم والرمز السري');
+  var data = { username: u, pin: p };
+  if (aReg) { data.display = $('#aDisp').value.trim() || u; data.avatar = prof.avatar; }
+  $('#aGo').disabled = true;
+  socket.emit(aReg ? 'acc_register' : 'acc_login', data, function (r) {
+    $('#aGo').disabled = false;
+    if (!r || !r.ok) return toast((r && r.error) || 'حدث خطأ، حاول مرة أخرى');
+    accTok = r.token;
+    store.set('ed_acc_token', accTok);
+    setAccount(r.me);
+    show('home');
+    toast('مرحباً ' + r.me.display + ' 👋');
+  });
+};
+$('#bProf').onclick = function () { if (!account) return openAuth(); openProfile(); };
+$('#pSave').onclick = function () {
+  var n = $('#pName').value.trim();
+  if (!n) return toast('اكتب اسمك');
+  if (!account) { prof.name = n; store.set('ed_prof', prof); refreshHome(); return show('home'); }
+  socket.emit('acc_update', { display: n, avatar: prof.avatar }, function (r) {
+    if (!r || !r.ok) return toast((r && r.error) || 'تعذر الحفظ');
+    setAccount(r.me);
+    show('home');
+  });
+};
+function accResume() {
+  if (!accTok) return;
+  socket.emit('acc_resume', { token: accTok }, function (r) { if (r && r.ok) setAccount(r.me); });
+}
+socket.on('connect', accResume);
+if (socket.connected) accResume();
+(function () {
+  var lo = el('button', 'btn alt', '🚪 تسجيل الخروج');
+  lo.onclick = function () {
+    socket.emit('acc_logout', { token: accTok }, function () {
+      account = null; accTok = null;
+      store.set('ed_acc_token', null);
+      prof = { name: '', avatar: '🦊' };
+      store.set('ed_prof', prof);
+      refreshHome();
+      show('home');
+    });
+  };
+  var s = $('#settings');
+  s.insertBefore(lo, s.querySelector('.back'));
+})();
   refreshHome();
 </script>
 </body>
