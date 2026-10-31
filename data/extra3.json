@@ -1,0 +1,51 @@
+{
+  "levels": {
+    "3": {
+      "name": "المتقدم",
+      "rounds": 15,
+      "questions": [
+        {"type":"choice","prompt":"ما معنى: I agree with you؟","options":["أنا أتفق معك","أنا أعرفك","أنا أراك","أنا أتبعك"],"answer":"أنا أتفق معك","translation":"أنا أتفق معك.","example":"I agree with you completely. = أتفق معك تماماً."},
+        {"type":"choice","prompt":"ما معنى «يعتمد على»؟","options":["Depend on","Look at","Wait for","Care about"],"answer":"Depend on","translation":"يعتمد على","example":"It depends on the weather. = ذلك يعتمد على الطقس."},
+        {"type":"choice","prompt":"ما معنى «ينتظر»؟","options":["Wait for","Look for","Ask for","Care for"],"answer":"Wait for","translation":"ينتظر","example":"I am waiting for the bus. = أنتظر الحافلة."},
+        {"type":"choice","prompt":"ما معنى «يتفق»؟","options":["Agree","Allow","Argue","Arrive"],"answer":"Agree","translation":"يتفق","example":"We agree on this. = نتفق على هذا."},
+        {"type":"choice","prompt":"ما معنى «يقرر»؟","options":["Decide","Describe","Discover","Deliver"],"answer":"Decide","translation":"يقرر","example":"I decided to stay home. = قررت البقاء في المنزل."},
+        {"type":"choice","prompt":"ما معنى «ينسى»؟","options":["Forget","Forgive","Follow","Fix"],"answer":"Forget","translation":"ينسى","example":"Don't forget your keys. = لا تنسَ مفاتيحك."},
+        {"type":"choice","prompt":"ما معنى «يتذكر»؟","options":["Remember","Remind","Repeat","Reply"],"answer":"Remember","translation":"يتذكر","example":"I remember his name. = أتذكر اسمه."},
+        {"type":"choice","prompt":"ما معنى «يحاول»؟","options":["Try","Tie","Turn","Touch"],"answer":"Try","translation":"يحاول","example":"I will try again. = سأحاول مرة أخرى."},
+        {"type":"choice","prompt":"ما معنى «مفاجأة»؟","options":["Surprise","Silence","Support","Success"],"answer":"Surprise","translation":"مفاجأة","example":"What a nice surprise! = يا لها من مفاجأة جميلة!"},
+        {"type":"choice","prompt":"ما معنى «ربما»؟","options":["Maybe","Never","Really","Exactly"],"answer":"Maybe","translation":"ربما","example":"Maybe I will call you later. = ربما أتصل بك لاحقاً."},
+        {"type":"choice","prompt":"ما معنى «في الواقع»؟","options":["Actually","Usually","Finally","Quickly"],"answer":"Actually","translation":"في الواقع","example":"Actually, I don't agree. = في الواقع، أنا لا أتفق."},
+        {"type":"choice","prompt":"ما معنى «محرج»؟","options":["Embarrassed","Excited","Exhausted","Empty"],"answer":"Embarrassed","translation":"محرج","example":"I felt embarrassed. = شعرت بالإحراج."},
+        {"type":"choice","prompt":"ما معنى: It's up to you؟","options":["الأمر يعود إليك","ارفع يدك","هذا من أجلك","إنه فوقك"],"answer":"الأمر يعود إليك","translation":"الأمر يعود إليك.","example":"Choose what you like, it's up to you. = اختر ما تحب، الأمر يعود إليك."},
+        {"type":"choice","prompt":"ما معنى: Make sure؟","options":["تأكَّد","اصنع قهوة","اذهب بسرعة","اجلس هنا"],"answer":"تأكَّد","translation":"تأكَّد","example":"Make sure the door is closed. = تأكَّد أن الباب مغلق."},
+        {"type":"complete","prompt":"I have been waiting ___ an hour.","options":["for","since","during","at"],"answer":"for","translation":"لقد كنت أنتظر منذ ساعة.","example":"She has been working for two hours. = هي تعمل منذ ساعتين."},
+        {"type":"complete","prompt":"I have lived here ___ 2020.","options":["since","for","during","ago"],"answer":"since","translation":"أعيش هنا منذ عام 2020.","example":"He has worked here since May. = هو يعمل هنا منذ مايو."},
+        {"type":"complete","prompt":"If it rains, we ___ at home.","options":["will stay","stayed","staying","stays"],"answer":"will stay","translation":"إذا أمطرت، سنبقى في المنزل.","example":"If I am free, I will call you. = إذا كنت متفرغاً سأتصل بك."},
+        {"type":"complete","prompt":"She asked me ___ I was doing.","options":["what","who","where","which"],"answer":"what","translation":"سألتني ماذا كنت أفعل.","example":"He asked me what I wanted. = سألني ماذا أريد."},
+        {"type":"complete","prompt":"I'm looking forward ___ seeing you.","options":["to","for","at","of"],"answer":"to","translation":"أتطلع إلى رؤيتك.","example":"We look forward to the holiday. = نتطلع إلى العطلة."},
+        {"type":"complete","prompt":"He is better ___ me at English.","options":["than","that","then","as"],"answer":"than","translation":"هو أفضل مني في الإنجليزية.","example":"She is taller than her brother. = هي أطول من أخيها."},
+        {"type":"complete","prompt":"I can't ___ the noise anymore.","options":["stand","stay","step","start"],"answer":"stand","translation":"لم أعد أتحمل الضجيج.","example":"I can't stand hot weather. = لا أتحمل الطقس الحار."},
+        {"type":"complete","prompt":"We should ___ a decision soon.","options":["make","do","have","give"],"answer":"make","translation":"يجب أن نتخذ قراراً قريباً.","example":"Make a decision quickly. = اتخذ قراراً بسرعة."},
+        {"type":"complete","prompt":"I used to ___ football when I was young.","options":["play","playing","played","plays"],"answer":"play","translation":"كنت أمارس كرة القدم عندما كنت صغيراً.","example":"She used to live in Paris. = كانت تعيش في باريس."},
+        {"type":"complete","prompt":"She has already ___ her homework.","options":["finished","finish","finishing","finishes"],"answer":"finished","translation":"لقد أنهت واجبها بالفعل.","example":"I have already eaten. = لقد أكلت بالفعل."},
+        {"type":"complete","prompt":"The movie was so boring ___ I fell asleep.","options":["that","what","who","which"],"answer":"that","translation":"كان الفيلم مملاً جداً لدرجة أنني نمت.","example":"It was so hot that we stayed inside. = كان الجو حاراً جداً فبقينا في الداخل."},
+        {"type":"complete","prompt":"You ___ wear a seatbelt. It's the law.","options":["must","might","may","could"],"answer":"must","translation":"يجب أن تربط حزام الأمان. هذا هو القانون.","example":"You must be careful. = يجب أن تكون حذراً."},
+        {"type":"complete","prompt":"I wish I ___ more free time.","options":["had","have","has","having"],"answer":"had","translation":"أتمنى لو كان عندي وقت فراغ أكثر.","example":"I wish I knew the answer. = أتمنى لو عرفت الإجابة."},
+        {"type":"build","prompt":"رتّب الجملة: ما رأيك في هذا؟","words":["What","do","you","think","about","this"],"answer":"What do you think about this?","translation":"ما رأيك في هذا؟","example":"What do you think about my idea? = ما رأيك في فكرتي؟"},
+        {"type":"build","prompt":"رتّب الجملة: لقد كنت أنتظر منذ ساعة","words":["I","have","been","waiting","for","an","hour"],"answer":"I have been waiting for an hour.","translation":"لقد كنت أنتظر منذ ساعة.","example":"I have been waiting for you. = كنت أنتظرك."},
+        {"type":"build","prompt":"رتّب الجملة: هذا يعتمد على الموقف","words":["It","depends","on","the","situation"],"answer":"It depends on the situation.","translation":"هذا يعتمد على الموقف.","example":"It depends on you. = هذا يعتمد عليك."},
+        {"type":"build","prompt":"رتّب الجملة: أنا أتفق معك تماماً","words":["I","completely","agree","with","you"],"answer":"I completely agree with you.","translation":"أنا أتفق معك تماماً.","example":"I don't agree with him. = لا أتفق معه."},
+        {"type":"build","prompt":"رتّب الجملة: هل تخبرني أين المحطة؟","words":["Could","you","tell","me","where","the","station","is"],"answer":"Could you tell me where the station is?","translation":"هل تستطيع أن تخبرني أين المحطة؟","example":"Could you tell me the time? = هل تخبرني كم الساعة؟"},
+        {"type":"build","prompt":"رتّب الجملة: قالت لي إنها متعبة","words":["She","told","me","that","she","was","tired"],"answer":"She told me that she was tired.","translation":"قالت لي إنها متعبة.","example":"He told me that he was busy. = قال لي إنه مشغول."},
+        {"type":"conversation","prompt":"What do you think about this idea?","options":["I think it's great.","I am going to school.","It is Monday.","I have a car."],"answer":"I think it's great.","translation":"ما رأيك في هذه الفكرة؟ — أظنها رائعة.","example":"I'm not sure about it. = لست متأكداً منها."},
+        {"type":"conversation","prompt":"Would you mind opening the window?","options":["Not at all.","Yes, it is red.","I am fine.","At six o'clock."],"answer":"Not at all.","translation":"هل تمانع في فتح النافذة؟ — أبداً، لا مانع.","example":"Of course not. = بالطبع لا."},
+        {"type":"conversation","prompt":"Sorry I'm late. The traffic was terrible.","options":["No worries. Take a seat.","Yes, I like traffic.","It is blue.","Nice to meet you."],"answer":"No worries. Take a seat.","translation":"آسف على التأخير، الازدحام كان فظيعاً. — لا تقلق، تفضل بالجلوس.","example":"It's fine. Come in. = لا بأس، تفضل."},
+        {"type":"conversation","prompt":"How was your weekend?","options":["Pretty good, thanks.","It is a week.","I am twenty.","At the station."],"answer":"Pretty good, thanks.","translation":"كيف كانت عطلة نهاية الأسبوع؟ — جيدة جداً، شكراً.","example":"It was relaxing. = كانت مريحة."},
+        {"type":"conversation","prompt":"Do you want to join us for dinner?","options":["I'd love to, thanks!","I am a dinner.","It is five.","He is my brother."],"answer":"I'd love to, thanks!","translation":"هل تريد أن تنضم إلينا على العشاء؟ — يسعدني ذلك، شكراً!","example":"Sorry, I can't tonight. = آسف، لا أستطيع الليلة."},
+        {"type":"conversation","prompt":"Could you repeat that, please?","options":["Sure. I said the meeting is at ten.","Yes, I am a teacher.","It is raining.","I like repeat."],"answer":"Sure. I said the meeting is at ten.","translation":"هل تستطيع أن تعيد ذلك من فضلك؟ — بالتأكيد، قلت إن الاجتماع في العاشرة.","example":"Sorry, could you speak slowly? = آسف، هل تتكلم ببطء؟"},
+        {"type":"conversation","prompt":"I'm thinking of changing my job.","options":["Really? Why is that?","It is a table.","I am hungry.","Good night!"],"answer":"Really? Why is that?","translation":"أفكر في تغيير وظيفتي. — حقاً؟ لماذا؟","example":"That sounds interesting. = يبدو ذلك مثيراً للاهتمام."},
+        {"type":"conversation","prompt":"Let's meet tomorrow.","options":["Sounds good.","It is a book.","Nice to meet you.","Yesterday."],"answer":"Sounds good.","translation":"لنلتقِ غداً. — اتفقنا.","example":"Sounds like a plan. = فكرة جيدة."}
+      ]
+    }
+  }
+}
