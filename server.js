@@ -21,7 +21,23 @@ app.use(express.static(path.join(__dirname, 'data', 'public')));
 app.get('/health', (req, res) => res.send('ok'));
 
 function loadData() {
-  return JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'questions.json'), 'utf8'));
+  const dir = path.join(__dirname, 'data');
+  const data = JSON.parse(fs.readFileSync(path.join(dir, 'questions.json'), 'utf8'));
+  fs.readdirSync(dir)
+    .filter((f) => /^extra.*\.json$/.test(f))
+    .forEach((f) => {
+      try {
+        const extra = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+        Object.keys(extra.levels || {}).forEach((id) => {
+          const src = extra.levels[id];
+          if (!data.levels[id]) data.levels[id] = { name: src.name || 'مرحلة ' + id, rounds: src.rounds || 5, questions: [] };
+          data.levels[id].questions = data.levels[id].questions.concat(src.questions || []);
+        });
+      } catch (e) {
+        console.log('Bad file ' + f + ': ' + e.message);
+      }
+    });
+  return data;
 }
 
 app.get('/api/info', (req, res) => {
