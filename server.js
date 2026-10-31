@@ -10,7 +10,8 @@ const { Server } = require('socket.io');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-require('./accounts')(io);
+const accounts = require('./accounts');
+accounts(io);
 require('./friends')(io);
 
 const DEVELOPER = 'BADR EDDIN LEMMOUCHI';
@@ -88,7 +89,8 @@ function rid() {
 function newPlayer(token, d, socketId) {
   const name = String((d && d.name) || '').trim().slice(0, 14) || 'لاعب';
   const avatar = String((d && d.avatar) || '🙂').slice(0, 4);
-  return { id: rid(), token, socketId, name, avatar, score: 0, correct: 0, missed: [], connected: true };
+    const sk = io.sockets.sockets.get(socketId);
+  return { id: rid(), token, socketId, name, avatar, username: (sk && sk.data.username) || null, score: 0, correct: 0, missed: [], connected: true };
 }
 
 function publicRoom(room) {
