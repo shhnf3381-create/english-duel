@@ -1,0 +1,50 @@
+{
+  "levels": {
+    "1": {
+      "questions": [
+        {"type":"choice","prompt":"ما معنى «يشرب»؟","options":["Drink","Eat","Run","Read"],"answer":"Drink","translation":"يشرب","example":"I drink milk. = أشرب الحليب."},
+        {"type":"choice","prompt":"ما معنى «ينام»؟","options":["Sleep","Walk","Cook","Open"],"answer":"Sleep","translation":"ينام","example":"I sleep at night. = أنام في الليل."},
+        {"type":"choice","prompt":"ما معنى «يعمل»؟","options":["Work","Play","Sit","Sing"],"answer":"Work","translation":"يعمل","example":"He works in a shop. = هو يعمل في متجر."},
+        {"type":"choice","prompt":"ما معنى «متعب»؟","options":["Tired","Happy","Cold","Fast"],"answer":"Tired","translation":"متعب","example":"I am tired. = أنا متعب."},
+        {"type":"choice","prompt":"ما معنى «ماء»؟","options":["Water","Milk","Bread","Rice"],"answer":"Water","translation":"ماء","example":"I need water. = أحتاج إلى ماء."},
+        {"type":"choice","prompt":"ما معنى «كتاب»؟","options":["Book","Table","Chair","Window"],"answer":"Book","translation":"كتاب","example":"This is my book. = هذا كتابي."},
+        {"type":"choice","prompt":"ما معنى «مدرسة»؟","options":["School","Market","Garden","Street"],"answer":"School","translation":"مدرسة","example":"The school is near. = المدرسة قريبة."},
+        {"type":"choice","prompt":"ما معنى «أب»؟","options":["Father","Brother","Uncle","Teacher"],"answer":"Father","translation":"أب","example":"My father is kind. = أبي طيب."},
+        {"type":"choice","prompt":"ما معنى «أخ»؟","options":["Brother","Sister","Mother","Friend"],"answer":"Brother","translation":"أخ","example":"My brother is tall. = أخي طويل."},
+        {"type":"choice","prompt":"ما معنى «أخت»؟","options":["Sister","Brother","Father","Aunt"],"answer":"Sister","translation":"أخت","example":"My sister is nice. = أختي لطيفة."},
+        {"type":"choice","prompt":"ما معنى «أزرق»؟","options":["Blue","Black","White","Pink"],"answer":"Blue","translation":"أزرق","example":"The sea is blue. = البحر أزرق."},
+        {"type":"choice","prompt":"ما معنى «أخضر»؟","options":["Green","Brown","Orange","Gray"],"answer":"Green","translation":"أخضر","example":"The tree is green. = الشجرة خضراء."},
+        {"type":"choice","prompt":"ما معنى «أبيض»؟","options":["White","Black","Red","Yellow"],"answer":"White","translation":"أبيض","example":"The milk is white. = الحليب أبيض."},
+        {"type":"choice","prompt":"ما معنى الرقم «ثلاثة»؟","options":["Three","Four","Five","Two"],"answer":"Three","translation":"ثلاثة","example":"I have three books. = لدي ثلاثة كتب."},
+        {"type":"choice","prompt":"ما معنى الرقم «خمسة»؟","options":["Five","Six","Nine","Ten"],"answer":"Five","translation":"خمسة","example":"I have five friends. = لدي خمسة أصدقاء."},
+        {"type":"choice","prompt":"ما معنى «خبز»؟","options":["Bread","Cheese","Egg","Apple"],"answer":"Bread","translation":"خبز","example":"I eat bread. = آكل الخبز."},
+        {"type":"choice","prompt":"ما معنى «حليب»؟","options":["Milk","Juice","Tea","Soup"],"answer":"Milk","translation":"حليب","example":"I like milk. = أحب الحليب."},
+        {"type":"choice","prompt":"ما معنى «كبير»؟","options":["Big","Small","Short","Slow"],"answer":"Big","translation":"كبير","example":"The house is big. = المنزل كبير."},
+        {"type":"choice","prompt":"ما معنى «صغير»؟","options":["Small","Big","Tall","Fast"],"answer":"Small","translation":"صغير","example":"The cat is small. = القطة صغيرة."},
+        {"type":"choice","prompt":"ما معنى «باب»؟","options":["Door","Wall","Floor","Roof"],"answer":"Door","translation":"باب","example":"Open the door. = افتح الباب."},
+        {"type":"complete","prompt":"I ___ a book.","options":["Read","Drink","Sleep","Wash"],"answer":"Read","translation":"أقرأ كتاباً.","example":"She reads a book. = هي تقرأ كتاباً."},
+        {"type":"complete","prompt":"I ___ in my bed.","options":["Sleep","Eat","Run","Write"],"answer":"Sleep","translation":"أنام في سريري.","example":"The baby sleeps. = الطفل ينام."},
+        {"type":"complete","prompt":"This is my ___.","options":["Sister","Eat","Green","Quickly"],"answer":"Sister","translation":"هذه أختي.","example":"My sister is at home. = أختي في المنزل."},
+        {"type":"complete","prompt":"The sky is ___.","options":["Blue","Eat","Mother","Door"],"answer":"Blue","translation":"السماء زرقاء.","example":"The sky is blue today. = السماء زرقاء اليوم."},
+        {"type":"complete","prompt":"I ___ a student.","options":["am","is","are","be"],"answer":"am","translation":"أنا طالب.","example":"I am a teacher. = أنا معلم."},
+        {"type":"complete","prompt":"You ___ my friend.","options":["are","am","is","be"],"answer":"are","translation":"أنت صديقي.","example":"You are kind. = أنت طيب."},
+        {"type":"complete","prompt":"He ___ my brother.","options":["is","am","are","be"],"answer":"is","translation":"هو أخي.","example":"He is tall. = هو طويل."},
+        {"type":"complete","prompt":"I have two ___.","options":["Brothers","Eat","Green","Quickly"],"answer":"Brothers","translation":"لدي أخوان.","example":"I have two sisters. = لدي أختان."},
+        {"type":"build","prompt":"رتّب الجملة: هي صديقتي","words":["She","is","my","friend"],"answer":"She is my friend.","translation":"هي صديقتي.","example":"He is my friend. = هو صديقي."},
+        {"type":"build","prompt":"رتّب الجملة: أشرب الماء","words":["I","drink","water"],"answer":"I drink water.","translation":"أشرب الماء.","example":"I drink milk. = أشرب الحليب."},
+        {"type":"build","prompt":"رتّب الجملة: هو يأكل الخبز","words":["He","eats","bread"],"answer":"He eats bread.","translation":"هو يأكل الخبز.","example":"She eats rice. = هي تأكل الأرز."},
+        {"type":"build","prompt":"رتّب الجملة: الكتاب كبير","words":["The","book","is","big"],"answer":"The book is big.","translation":"الكتاب كبير.","example":"The house is big. = المنزل كبير."},
+        {"type":"build","prompt":"رتّب الجملة: نحن سعداء","words":["We","are","happy"],"answer":"We are happy.","translation":"نحن سعداء.","example":"They are happy. = هم سعداء."},
+        {"type":"build","prompt":"رتّب الجملة: أحب الحليب","words":["I","like","milk"],"answer":"I like milk.","translation":"أحب الحليب.","example":"I like tea. = أحب الشاي."},
+        {"type":"build","prompt":"رتّب الجملة: أبي يعمل","words":["My","father","works"],"answer":"My father works.","translation":"أبي يعمل.","example":"My mother works. = أمي تعمل."},
+        {"type":"conversation","prompt":"Good night!","options":["Good night!","Good morning!","I am hungry.","It is blue."],"answer":"Good night!","translation":"تصبح على خير!","example":"Good night, my friend. = تصبح على خير يا صديقي."},
+        {"type":"conversation","prompt":"Nice to meet you.","options":["Nice to meet you, too.","I am sleeping.","It is a book.","Five, please."],"answer":"Nice to meet you, too.","translation":"سررت بلقائك. — وأنا أيضاً.","example":"Nice to meet you, Sara. = سررت بلقائك يا سارة."},
+        {"type":"conversation","prompt":"How old are you?","options":["I am twenty years old.","I am fine.","I am from Egypt.","It is blue."],"answer":"I am twenty years old.","translation":"كم عمرك؟ — عمري عشرون سنة.","example":"I am ten years old. = عمري عشر سنوات."},
+        {"type":"conversation","prompt":"Goodbye!","options":["Goodbye! See you.","Good morning!","I am hungry.","Nice to meet you."],"answer":"Goodbye! See you.","translation":"إلى اللقاء! — أراك لاحقاً.","example":"See you tomorrow. = أراك غداً."},
+        {"type":"conversation","prompt":"Are you hungry?","options":["Yes, I am hungry.","No, it is a house.","I am from Egypt.","Good night!"],"answer":"Yes, I am hungry.","translation":"هل أنت جائع؟ — نعم، أنا جائع.","example":"No, I am not hungry. = لا، لست جائعاً."},
+        {"type":"conversation","prompt":"Do you like tea?","options":["Yes, I like tea.","I am a tea.","It is Monday.","Good morning!"],"answer":"Yes, I like tea.","translation":"هل تحب الشاي؟ — نعم، أحب الشاي.","example":"I like tea with milk. = أحب الشاي بالحليب."},
+        {"type":"conversation","prompt":"Sorry!","options":["That's okay.","Good night!","It is red.","I am five."],"answer":"That's okay.","translation":"آسف! — لا بأس.","example":"No problem. = لا مشكلة."}
+      ]
+    }
+  }
+}
