@@ -1,0 +1,41 @@
+{
+  "levels": {
+    "1": {
+      "name": "المبتدئ",
+      "rounds": 5,
+      "questions": [
+        {"type":"choice","prompt":"ما معنى «يأكل»؟","options":["Eat","Drink","Sleep","Work"],"answer":"Eat","translation":"يأكل","example":"I eat bread. = آكل الخبز."},
+        {"type":"choice","prompt":"ما معنى «منزل»؟","options":["House","Friend","Water","Door"],"answer":"House","translation":"منزل","example":"My house is big. = منزلي كبير."},
+        {"type":"choice","prompt":"ما معنى «صديق»؟","options":["Friend","Mother","Teacher","Doctor"],"answer":"Friend","translation":"صديق","example":"He is my friend. = هو صديقي."},
+        {"type":"choice","prompt":"ما معنى «سعيد»؟","options":["Happy","Tired","Hungry","Angry"],"answer":"Happy","translation":"سعيد","example":"I am happy today. = أنا سعيد اليوم."},
+        {"type":"choice","prompt":"ما معنى «أحمر»؟","options":["Red","Blue","Green","Yellow"],"answer":"Red","translation":"أحمر","example":"The apple is red. = التفاحة حمراء."},
+        {"type":"complete","prompt":"I ___ water every day.","options":["Drink","Eat","Sleep","Walk"],"answer":"Drink","translation":"أشرب الماء كل يوم.","example":"I drink tea in the morning. = أشرب الشاي في الصباح."},
+        {"type":"complete","prompt":"She is my ___.","options":["Mother","Run","Blue","Eat"],"answer":"Mother","translation":"هي أمي.","example":"My mother is kind. = أمي طيبة."},
+        {"type":"build","prompt":"رتّب الجملة: أنا سعيد","words":["I","am","happy"],"answer":"I am happy.","translation":"أنا سعيد.","example":"She is happy. = هي سعيدة."},
+        {"type":"build","prompt":"رتّب الجملة: هذا منزلي","words":["This","is","my","house"],"answer":"This is my house.","translation":"هذا منزلي.","example":"This is my friend. = هذا صديقي."},
+        {"type":"conversation","prompt":"Hello! What is your name?","options":["My name is Sara.","It is red.","I like water.","I am a house."],"answer":"My name is Sara.","translation":"مرحباً! ما اسمك؟ — اسمي سارة.","example":"My name is Ali. = اسمي علي."},
+        {"type":"conversation","prompt":"Good morning!","options":["Good morning!","Goodbye!","I am tired.","Yes, a pen."],"answer":"Good morning!","translation":"صباح الخير!","example":"Good morning, teacher! = صباح الخير يا معلم!"}
+      ]
+    },
+    "2": {
+      "name": "المتوسط",
+      "rounds": 10,
+      "questions": [
+        {"type":"choice","prompt":"ما معنى «يحتاج»؟","options":["Need","Want","Think","Know"],"answer":"Need","translation":"يحتاج","example":"I need help. = أحتاج إلى مساعدة."},
+        {"type":"choice","prompt":"ما معنى «يريد»؟","options":["Want","Need","Know","See"],"answer":"Want","translation":"يريد","example":"I want a coffee. = أريد قهوة."},
+        {"type":"choice","prompt":"ما معنى «أحب»؟","options":["Like","Hate","Buy","Open"],"answer":"Like","translation":"أحب","example":"I like music. = أحب الموسيقى."},
+        {"type":"choice","prompt":"ما معنى: Where are you going؟","options":["إلى أين أنت ذاهب؟","كم عمرك؟","ماذا تأكل؟","متى تنام؟"],"answer":"إلى أين أنت ذاهب؟","translation":"إلى أين أنت ذاهب؟","example":"I am going to work. = أنا ذاهب إلى العمل."},
+        {"type":"build","prompt":"رتّب الجملة: أحتاج إلى بعض الماء","words":["I","need","some","water"],"answer":"I need some water.","translation":"أحتاج إلى بعض الماء.","example":"She needs some food. = هي تحتاج إلى بعض الطعام."},
+        {"type":"build","prompt":"رتّب الجملة: أنا متعب اليوم","words":["I","am","tired","today"],"answer":"I am tired today.","translation":"أنا متعب اليوم.","example":"He is tired. = هو متعب."},
+        {"type":"build","prompt":"رتّب الجملة: أين تعيش؟","words":["Where","do","you","live"],"answer":"Where do you live?","translation":"أين تعيش؟","example":"I live in a small town. = أعيش في بلدة صغيرة."},
+        {"type":"complete","prompt":"I ___ to school every day.","options":["Go","Eat","Sleep","Drink"],"answer":"Go","translation":"أذهب إلى المدرسة كل يوم.","example":"She goes to work by bus. = هي تذهب إلى العمل بالحافلة."},
+        {"type":"complete","prompt":"I usually ___ up early.","options":["Wake","Eat","Drink","Cook"],"answer":"Wake","translation":"أستيقظ عادةً مبكرًا.","example":"We wake up at six. = نستيقظ في السادسة."},
+        {"type":"complete","prompt":"She ___ tired.","options":["is","are","am","be"],"answer":"is","translation":"هي متعبة.","example":"She is at home. = هي في المنزل."},
+        {"type":"complete","prompt":"We ___ hungry.","options":["are","is","am","be"],"answer":"are","translation":"نحن جائعون.","example":"We are friends. = نحن أصدقاء."},
+        {"type":"conversation","prompt":"How are you?","options":["I'm fine, thank you.","I am going to school.","I like apples.","It is raining."],"answer":"I'm fine, thank you.","translation":"كيف حالك؟ — أنا بخير، شكرًا.","example":"I'm good, and you? = أنا بخير، وأنت؟"},
+        {"type":"conversation","prompt":"Where are you from?","options":["I am from Egypt.","I am twenty years old.","I like tea.","It is Monday."],"answer":"I am from Egypt.","translation":"من أين أنت؟ — أنا من مصر.","example":"She is from Italy. = هي من إيطاليا."},
+        {"type":"conversation","prompt":"Thank you very much!","options":["You're welcome.","Good night.","I don't know.","I am hungry."],"answer":"You're welcome.","translation":"شكرًا جزيلًا! — على الرحب والسعة.","example":"No problem. = لا مشكلة."}
+      ]
+    }
+  }
+        }
