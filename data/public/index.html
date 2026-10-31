@@ -237,12 +237,19 @@ function sfxOk() { beep(660, 0.12); setTimeout(function () { beep(880, 0.18); },
 function sfxBad() { beep(200, 0.3, 'square'); }
 function speak(text) {
   try {
-    if (!window.speechSynthesis) return;
+    var cap = window.Capacitor;
+    var tts = cap && ((cap.Plugins && cap.Plugins.TextToSpeech) || (cap.registerPlugin ? cap.registerPlugin('TextToSpeech') : null));
+    if (tts && cap.isNativePlatform && cap.isNativePlatform()) {
+      tts.speak({ text: text, lang: 'en-US', rate: 0.9, pitch: 1.0, volume: 1.0 })
+        .catch(function () { toast('تعذر تشغيل النطق، تأكد من وجود محرك نطق في هاتفك'); });
+      return;
+    }
+    if (!window.speechSynthesis) { toast('النطق غير مدعوم على هذا الجهاز'); return; }
     speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.9;
     speechSynthesis.speak(u);
   } catch (e) {}
-}
+                                               }
 
 /* ---------- Home / Profile / Settings ---------- */
 function refreshHome() {
