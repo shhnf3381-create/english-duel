@@ -149,7 +149,23 @@ input:focus{border-color:var(--p)}
   <button class="btn alt" id="lLeave">مغادرة الغرفة</button>
 </div>
 
-<div id="solo" class="screen">
+<div id="auth" class="screen">
+  <h2>حسابك</h2>
+  <div class="card">
+    <label>اسم المستخدم (حروف إنجليزية صغيرة وأرقام، فريد)</label>
+    <input type="text" id="aUser" maxlength="16" dir="ltr" autocapitalize="none" autocomplete="off" placeholder="username">
+    <label style="margin-top:12px">الرمز السري (من 4 إلى 6 أرقام)</label>
+    <input type="password" id="aPin" maxlength="6" inputmode="numeric" dir="ltr" placeholder="••••" style="width:100%;font-size:22px;padding:14px;border-radius:14px;border:2px solid #c7d2fe;text-align:center;font-family:inherit">
+    <div id="aExtra" style="display:none">
+      <label style="margin-top:12px">اسمك الظاهر في اللعبة</label>
+      <input type="text" id="aDisp" maxlength="14" placeholder="اسمك">
+    </div>
+  </div>
+  <button class="btn green" id="aGo">دخول</button>
+  <button class="btn alt" id="aSwitch">ليس لدي حساب؟ إنشاء حساب</button>
+  <button class="btn alt back">رجوع</button>
+</div>
+  <div id="solo" class="screen">
   <h2>التعلم الفردي</h2>
   <div id="soMenu">
     <div class="card"><div class="mut">اختر المرحلة للتدرب</div><div id="soLevels" class="chips"></div></div>
