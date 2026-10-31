@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#4f46e5">
+<title>English Duel</title>
+<!-- Developed by BADR EDDIN LEMMOUCHI | من تطوير بدر الدين لموشي -->
+<style>
+:root{--p:#4f46e5;--p2:#7c3aed;--ok:#16a34a;--bad:#dc2626;--tx:#1e1b4b;--mut:#6b7280}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:linear-gradient(160deg,#eef2ff,#fdf4ff);color:var(--tx);min-height:100vh;padding-bottom:60px}
+#app{max-width:480px;margin:0 auto;padding:16px}
+h2{margin:8px 0 14px;text-align:center}
+h3{margin:0 0 10px}
+label{display:block;margin:6px 0;color:var(--mut)}
+.screen{display:none}
+.screen.on{display:block;animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.logo{text-align:center;margin:22px 0 14px}
+.logo .em{font-size:64px;display:inline-block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.logo h1{margin:6px 0 2px;font-size:34px;color:var(--p);direction:ltr}
+.logo p{margin:0;color:var(--mut)}
+.hello{text-align:center;margin-bottom:14px;font-weight:700}
+.btn{display:block;width:100%;border:0;border-radius:18px;padding:15px;font-size:19px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:0 6px 0 #3730a3;margin:0 0 14px;cursor:pointer;font-family:inherit}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #3730a3}
+.btn.alt{background:#fff;color:var(--p);box-shadow:0 6px 0 #c7d2fe;border:2px solid #c7d2fe}
+.btn.green{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 6px 0 #166534}
+.btn:disabled{opacity:.5}
+.row{display:flex;gap:10px}
+.row .btn{font-size:16px;padding:14px 6px}
+.card{background:#fff;border-radius:20px;padding:16px;box-shadow:0 4px 14px rgba(79,70,229,.12);margin-bottom:14px}
+.center{text-align:center}
+.mut{color:var(--mut);font-size:14px}
+input[type=text]{width:100%;font-size:22px;padding:14px;border-radius:14px;border:2px solid #c7d2fe;font-family:inherit;text-align:center;outline:none}
+input:focus{border-color:var(--p)}
+.avs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.av{font-size:34px;padding:8px;border-radius:16px;border:3px solid transparent;background:#f5f3ff;cursor:pointer;text-align:center}
+.av.sel{border-color:var(--p);background:#e0e7ff}
+.code{font-size:44px;font-weight:800;letter-spacing:4px;color:var(--p);margin:6px 0}
+.pl{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:#f5f3ff;margin-bottom:8px}
+.pl .a{font-size:30px}
+.pl .n{flex:1;font-weight:700}
+.pl.empty{opacity:.55}
+.chips{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.chip2{padding:12px;border-radius:14px;border:2px solid #c7d2fe;background:#fff;font-family:inherit;font-size:16px;font-weight:700;color:var(--tx);cursor:pointer}
+.chip2.sel{background:var(--p);color:#fff;border-color:var(--p)}
+.scores{display:flex;justify-content:space-between;gap:8px}
+.sc{flex:1;text-align:center;padding:8px;border-radius:14px;background:#f5f3ff}
+.sc.me{background:#e0e7ff;outline:2px solid var(--p)}
+.sc .a{font-size:28px}
+.sc .n{font-size:14px;font-weight:700}
+.sc .s{font-size:26px;font-weight:800;color:var(--p)}
+.sc.pop .s{animation:pop .5s}
+@keyframes pop{50%{transform:scale(1.5)}}
+.prog{height:8px;border-radius:8px;background:#e0e7ff;margin:10px 0 6px;overflow:hidden}
+#gProg{height:100%;width:0;background:var(--p);transition:width .4s}
+.meta{display:flex;justify-content:space-between;font-size:14px;color:var(--mut)}
+.tbar{height:6px;border-radius:6px;background:#e5e7eb;margin-top:6px;overflow:hidden}
+#gTbar{height:100%;width:100%;background:#22c55e}
+.tie{color:#d97706;font-weight:800;min-height:0}
+.prompt{font-size:24px;font-weight:700;line-height:1.5;padding:6px 0}
+.opt{display:block;width:100%;padding:16px;margin-bottom:10px;font-size:20px;font-weight:700;border-radius:16px;border:2px solid #c7d2fe;background:#fff;color:var(--tx);font-family:inherit;cursor:pointer;animation:in .25s ease}
+.opt:active{transform:scale(.98)}
+.opt.right{background:#dcfce7;border-color:var(--ok)}
+.opt.wrong{background:#fee2e2;border-color:var(--bad);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.buildline{min-height:60px;border:2px dashed #c7d2fe;border-radius:16px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;background:#fff}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;justify-content:center}
+.chip{padding:12px 16px;font-size:20px;font-weight:700;border-radius:14px;border:2px solid var(--p);background:#fff;color:var(--p);font-family:inherit;cursor:pointer}
+.chip.ghost{opacity:.25}
+.msg{text-align:center;color:var(--mut);margin:6px 0;min-height:22px;font-weight:700}
+.res{text-align:center}
+.res .t{font-size:22px;font-weight:800;margin-bottom:8px}
+.res .ans{font-size:28px;font-weight:800;color:var(--p);direction:ltr}
+.res .ex{direction:auto;color:var(--mut);margin-top:6px}
+.banner{font-size:34px;font-weight:800;margin:6px 0 12px}
+.li{padding:8px 0;border-bottom:1px solid #eee}
+.li .e{font-weight:800;direction:ltr;text-align:right}
+.li .tr{color:var(--mut);font-size:14px}
+#foot{position:fixed;bottom:0;left:0;right:0;text-align:center;font-size:12px;color:#4338ca;background:rgba(255,255,255,.92);padding:6px 4px;line-height:1.5}
+#off{display:none;position:fixed;top:0;left:0;right:0;background:#dc2626;color:#fff;text-align:center;padding:8px;z-index:9;font-weight:700}
+#toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#1e1b4b;color:#fff;padding:12px 18px;border-radius:14px;display:none;z-index:9;max-width:90%;text-align:center}
+</style>
+</head>
+<body>
+<div id="off">انقطع الاتصال... جارٍ إعادة المحاولة</div>
+<div id="toast"></div>
+<div id="app">
+
+<div id="home" class="screen on">
+  <div class="logo"><div class="em">🎓</div><h1>English Duel</h1><p>تعلّم الإنجليزية وتحدَّ صديقك</p></div>
+  <div id="hello" class="hello"></div>
+  <button class="btn" id="bCreate">🏠 إنشاء غرفة</button>
+  <button class="btn alt" id="bJoin">🔑 الانضمام إلى غرفة</button>
+  <button class="btn alt" id="bSolo">📘 التعلم الفردي</button>
+  <div class="row">
+    <button class="btn alt" id="bProf">👤 الملف الشخصي</button>
+    <button class="btn alt" id="bSet">⚙️ الإعدادات</button>
+  </div>
+</div>
+
+<div id="profile" class="screen">
+  <h2>الملف الشخصي</h2>
+  <div class="card">
+    <label>اسمك</label>
+    <input type="text" id="pName" maxlength="14" placeholder="اكتب اسمك">
+    <label style="margin-top:14px">اختر صورتك الرمزية</label>
+    <div id="avs" class="avs"></div>
+  </div>
+  <button class="btn green" id="pSave">حفظ</button>
+  <button class="btn alt back">رجوع</button>
+</div>
+
+<div id="settings" class="screen">
+  <h2>الإعدادات</h2>
+  <div class="card center">
+    <button class="btn alt" id="sSound"></button>
+    <div class="mut">English Duel</div>
+    <div style="font-weight:700;margin-top:6px">من تطوير بدر الدين لموشي</div>
+    <div dir="ltr" class="mut">Developed by BADR EDDIN LEMMOUCHI</div>
+  </div>
+  <button class="btn alt back">رجوع</button>
+</div>
+
+<div id="join" class="screen">
+  <h2>الانضمام إلى غرفة</h2>
+  <div class="card">
+    <label>أدخل كود الغرفة</label>
+    <input type="text" id="jCode" maxlength="6" placeholder="EN1234" dir="ltr" autocapitalize="characters" autocomplete="off">
+  </div>
+  <button class="btn green" id="jGo">انضمام</button>
+  <button class="btn alt back">رجوع</button>
+</div>
+
+<div id="lobby" class="screen">
+  <h2>غرفة الانتظار</h2>
+  <div class="card center">
+    <div class="mut">كود الغرفة</div>
+    <div id="lCode" class="code" dir="ltr"></div>
+    <button class="btn alt" id="lCopy" style="margin-top:10px">📋 نسخ الكود</button>
+    <div id="lWait" class="mut"></div>
+  </div>
+  <div class="card"><div id="lPlayers"></div></div>
+  <div class="card" id="lLevelCard"><div class="mut">اختر المرحلة</div><div id="lLevels" class="chips"></div></div>
+  <button class="btn green" id="lStart">ابدأ المباراة</button>
+  <button class="btn alt" id="lLeave">مغادرة الغرفة</button>
+</div>
+
+<div id="game" class="screen">
+  <div class="card">
+    <div id="gScores" class="scores"></div>
+    <div class="prog"><div id="gProg"></div></div>
+    <div class="meta"><span id="gNum"></span><span id="gTime"></span></div>
+    <div class="tbar"><div id="gTbar"></div></div>
+  </div>
+  <div class="card center"><div id="gTie" class="tie"></div><div id="gPrompt" class="prompt">استعد...</div></div>
+  <div id="gAns"></div>
+  <div id="gMsg" class="msg"></div>
+  <div id="gRes" class="card res" style="display:none"></div>
+</div>
+
+<div id="final" class="screen">
+  <div class="card center"><div id="fBanner" class="banner"></div><div id="fScores" class="scores"></div></div>
+  <div class="card"><h3>📚 ما تعلمته</h3><div id="fLearn"></div></div>
+  <div class="card"><h3>🔁 تحتاج إلى مراجعتها</h3><div id="fMiss"></div></div>
+  <button class="btn green" id="fRe">🔄 إعادة المباراة</button>
+  <div id="fReS" class="mut center" style="margin-bottom:10px"></div>
+  <button class="btn alt" id="fHome">الرئيسية</button>
+</div>
+
+</div>
+<div id="foot">من تطوير بدر الدين لموشي<br><span dir="ltr">Developed by BADR EDDIN LEMMOUCHI</span></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+// English Duel - Client
+// Developed by BADR EDDIN LEMMOUCHI | من تطوير بدر الدين لموشي
+var $ = function (s) { return document.querySelector(s); };
+function el(t, c, txt) { var e = document.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; }
+var store = {
+  get: function (k, d) { try { var v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+var token = store.get('ed_token', null);
+if (!token) { token = Math.random().toString(36).slice(2) + Date.now().toString(36); store.set('ed_token', token); }
+var prof = store.get('ed_prof', { name: '', avatar: '🦊' });
+var sound = store.get('ed_sound', true);
+var AVATARS = ['🦊', '🐼', '🐯', '🐸', '🐵', '🦁', '🐧', '🐰'];
+var ROUND_MS = 20000;
+var myId = null, code = null, room = null, levels = [], selLevel = 1;
+var locked = false, timerInt = null, endAt = 0, lastBtn = null, cur = 'home', buildItems = [];
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('on'); });
+  $('#' + id).classList.add('on');
+  cur = id;
+  window.scrollTo(0, 0);
+}
+var toastT;
+function toast(m) {
+  var t = $('#toast'); t.textContent = m; t.style.display = 'block';
+  clearTimeout(toastT); toastT = setTimeout(function () { t.style.display = 'none'; }, 2600);
+}
+var ac;
+function beep(f, d, t) {
+  if (!sound) return;
+  try {
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.frequency.value = f; o.type = t || 'sine'; g.gain.value = 0.15;
+    o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + d);
+  } catch (e) {}
+}
+function sfxOk() { beep(660, 0.12); setTimeout(function () { beep(880, 0.18); }, 120); }
+function sfxBad() { beep(200, 0.3, 'square'); }
+function speak(text) {
+  try {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.9;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+/* ---------- Home / Profile / Settings ---------- */
+function refreshHome() {
+  $('#hello').textContent = prof.name ? ('أهلاً ' + prof.avatar + ' ' + prof.name) : 'أنشئ ملفك الشخصي لتبدأ';
+}
+function needName() {
+  if (prof.name) return false;
+  toast('اكتب اسمك أولاً');
+  openProfile();
+  return true;
+}
+function openProfile() {
+  $('#pName').value = prof.name;
+  var box = $('#avs'); box.innerHTML = '';
+  AVATARS.forEach(function (a) {
+    var d = el('div', 'av' + (a === prof.avatar ? ' sel' : ''), a);
+    d.onclick = function () { prof.avatar = a; openProfile(); };
+    box.appendChild(d);
+  });
+  show('profile');
+}
+$('#pSave').onclick = function () {
+  var n = $('#pName').value.trim();
+  if (!n) return toast('اكتب اسمك');
+  prof.name = n.slice(0, 14);
+  store.set('ed_prof', prof);
+  refreshHome(); show('home');
+};
+document.querySelectorAll('.back').forEach(function (b) { b.onclick = function () { show('home'); }; });
+$('#bProf').onclick = openProfile;
+$('#bSet').onclick = function () { refreshSound(); show('settings'); };
+$('#bSolo').onclick = function () { toast('التعلم الفردي قادم قريباً 📘'); };
+function refreshSound() { $('#sSound').textContent = sound ? '🔊 الصوت: يعمل' : '🔇 الصوت: متوقف'; }
+$('#sSound').onclick = function () { sound = !sound; store.set('ed_sound', sound); refreshSound(); };
+$('#bJoin').onclick = function () { if (needName()) return; $('#jCode').value = ''; show('join'); };
+
+/* ---------- Socket ---------- */
+var socket = io();
+socket.on('connect', function () {
+  $('#off').style.display = 'none';
+  var saved = null;
+  try { saved = sessionStorage.getItem('ed_code'); } catch (e) {}
+  if (saved) {
+    socket.emit('resume', { code: saved, token: token }, function (r) {
+      if (r && r.ok) { code = r.code; myId = r.you; }
+      else { try { sessionStorage.removeItem('ed_code'); } catch (e) {} code = null; if (cur !== 'home') show('home'); }
+    });
+  }
+});
+socket.on('disconnect', function () { $('#off').style.display = 'block'; });
+
+function saveCode(c) { code = c; try { sessionStorage.setItem('ed_code', c); } catch (e) {} }
+function clearRoom() {
+  code = null; room = null; myId = null;
+  try { sessionStorage.removeItem('ed_code'); } catch (e) {}
+  clearInterval(timerInt);
+}
+
+$('#bCreate').onclick = function () {
+  if (needName()) return;
+  socket.emit('create_room', { token: token, name: prof.name, avatar: prof.avatar }, function (r) {
+    if (!r || !r.ok) return toast((r && r.error) || 'تعذر إنشاء الغرفة');
+    myId = r.you; saveCode(r.code); show('lobby');
+  });
+};
+$('#jGo').onclick = function () {
+  var c = $('#jCode').value.trim().toUpperCase();
+  if (!c) return toast('أدخل الكود');
+  socket.emit('join_room', { token: token, name: prof.name, avatar: prof.avatar, code: c }, function (r) {
+    if (!r || !r.ok) return toast((r && r.error) || 'تعذر الانضمام');
+    myId = r.you; saveCode(r.code); show('lobby');
+  });
+};
+
+/* ---------- Lobby ---------- */
+fetch('/api/info').then(function (r) { return r.json(); }).then(function (i) { levels = i.levels || []; if (room) renderLobby(); }).catch(function () {});
+
+function amHost() {
+  if (!room) return false;
+  var me = room.players.find(function (p) { return p.id === myId; });
+  return !!(me && me.isHost);
+}
+function renderLobby() {
+  if (!room) return;
+  $('#lCode').textContent = room.code;
+  var box = $('#lPlayers'); box.innerHTML = '';
+  for (var i = 0; i < 2; i++) {
+    var p = room.players[i];
+    var d = el('div', 'pl' + (p ? '' : ' empty'));
+    if (p) {
+      d.appendChild(el('span', 'a', p.avatar));
+      d.appendChild(el('span', 'n', p.name + (p.id === myId ? ' (أنت)' : '') + (p.isHost ? ' 👑' : '')));
+      d.appendChild(el('span', '', p.connected ? '🟢' : '🔴'));
+    } else {
+      d.appendChild(el('span', 'a', '⏳'));
+      d.appendChild(el('span', 'n', 'بانتظار الصديق...'));
+    }
+    box.appendChild(d);
+  }
+  var full = room.players.length === 2 && room.players.every(function (p) { return p.connected; });
+  var host = amHost();
+  $('#lWait').textContent = full ? 'الجميع جاهز!' : 'أرسل الكود لصديقك لينضم';
+  $('#lLevelCard').style.display = host ? 'block' : 'none';
+  $('#lStart').style.display = host ? 'block' : 'none';
+  $('#lStart').disabled = !full;
+  if (!host) $('#lWait').textContent = full ? 'بانتظار منشئ الغرفة ليبدأ المباراة...' : 'أرسل الكود لصديقك لينضم';
+  var lv = $('#lLevels'); lv.innerHTML = '';
+  levels.forEach(function (l) {
+    var b = el('button', 'chip2' + (l.id === selLevel ? ' sel' : ''), 'المرحلة ' + l.id + ' · ' + l.name + ' (' + l.rounds + ' جولات)');
+    b.onclick = function () { selLevel = l.id; renderLobby(); };
+    lv.appendChild(b);
+  });
+}
+$('#lCopy').onclick = function () {
+  var c = $('#lCode').textContent;
+  function done() { toast('تم نسخ الكود ✅'); }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(c).then(done, function () { toast(c); });
+  else { var t = document.createElement('textarea'); t.value = c; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) { toast(c); } t.remove(); }
+};
+$('#lStart').onclick = function () {
+  socket.emit('start_game', { level: selLevel }, function (r) { if (!r || !r.ok) toast((r && r.error) || 'تعذر البدء'); });
+};
+$('#lLeave').onclick = function () { socket.emit('leave_room'); clearRoom(); show('home'); };
+
+/* ---------- Room updates ---------- */
+function scoreList(box, list) {
+  box.innerHTML = '';
+  list.forEach(function (p) {
+    var d = el('div', 'sc' + (p.id === myId ? ' me' : ''));
+    d.appendChild(el('div', 'a', p.avatar));
+    d.appendChild(el('div', 'n', p.name + (p.connected === false ? ' 🔴' : '')));
+    d.appendChild(el('div', 's', String(p.score)));
+    d.dataset.id = p.id;
+    box.appendChild(d);
+  });
+}
+socket.on('room_update', function (r) {
+  room = r;
+  if (r.state === 'lobby') { renderLobby(); if (cur !== 'lobby') show('lobby'); }
+  else if (r.state === 'playing') { scoreList($('#gScores'), r.players); if (cur !== 'game') show('game'); }
+});
+socket.on('room_closed', function () { toast('الصديق غادر الغرفة'); clearRoom(); show('home'); });
+socket.on('match_start', function (d) {
+  locked = false; clearInterval(timerInt);
+  $('#gPrompt').textContent = 'استعد... المرحلة ' + d.level + ' · ' + d.levelName;
+  $('#gAns').innerHTML = ''; $('#gRes').style.display = 'none'; $('#gMsg').textContent = '';
+  $('#gTie').textContent = ''; $('#gProg').style.width = '0'; $('#gNum').textContent = ''; $('#gTime').textContent = '';
+  show('game');
+});
+
+/* ---------- Questions ---------- */
+function tick() {
+  var left = Math.max(0, endAt - Date.now());
+  $('#gTime').textContent = '⏱️ ' + Math.ceil(left / 1000) + ' ث';
+  var b = $('#gTbar'); b.style.width = (left / ROUND_MS * 100) + '%';
+  b.style.background = left < 5000 ? '#dc2626' : '#22c55e';
+}
+function lockUI(msg) {
+  locked = true;
+  $('#gAns').querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+  $('#gMsg').textContent = msg || '';
+}
+function send(v) { if (locked) return; lockUI('جارٍ التحقق...'); socket.emit('answer', v); }
+
+function renderBuild(q, box) {
+  var items = q.words.map(function (w) { return { w: w, used: false }; });
+  var sel = [];
+  var line = el('div', 'buildline'); line.dir = 'ltr';
+  var bank = el('div', 'bank'); bank.dir = 'ltr';
+  var ok = el('button', 'btn', 'تأكيد الإجابة');
+  function draw() {
+    line.innerHTML = ''; bank.innerHTML = '';
+    sel.forEach(function (it) {
+      var b = el('button', 'chip', it.w);
+      b.onclick = function () { if (locked) return; it.used = false; sel = sel.filter(function (x) { return x !== it; }); draw(); };
+      line.appendChild(b);
+    });
+    items.forEach(function (it) {
+      var b = el('button', 'chip' + (it.used ? ' ghost' : ''), it.w);
+      b.disabled = it.used || locked;
+      b.onclick = function () { if (locked) return; it.used = true; sel.push(it); draw(); };
+      bank.appendChild(b);
+    });
+    ok.disabled = locked || sel.length === 0;
+  }
+  ok.onclick = function () { if (locked || !sel.length) return; send(sel.map(function (x) { return x.w; }).join(' ')); };
+  box.appendChild(line); box.appendChild(bank); box.appendChild(ok);
+  draw();
+}
+
+socket.on('question', function (d) {
+  locked = false; lastBtn = null;
+  $('#gRes').style.display = 'none'; $('#gMsg').textContent = '';
+  $('#gTie').textContent = d.tiebreak ? '⚡ جولة فاصلة!' : '';
+  $('#gNum').textContent = 'السؤال ' + d
