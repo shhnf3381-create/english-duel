@@ -148,7 +148,27 @@ input:focus{border-color:var(--p)}
   <button class="btn alt" id="lLeave">مغادرة الغرفة</button>
 </div>
 
-<div id="game" class="screen">
+<div id="solo" class="screen">
+  <h2>التعلم الفردي</h2>
+  <div id="soMenu">
+    <div class="card"><div class="mut">اختر المرحلة للتدرب</div><div id="soLevels" class="chips"></div></div>
+    <button class="btn green" id="soRev">🔁 مراجعة أخطائي</button>
+    <button class="btn alt back">رجوع</button>
+  </div>
+  <div id="soPlay" style="display:none">
+    <div class="card">
+      <div class="meta"><span id="soNum"></span><span id="soScore"></span></div>
+      <div class="prog"><div id="soProg" style="height:100%;width:0;background:#4f46e5;transition:width .4s"></div></div>
+    </div>
+    <div class="card center"><div id="soPrompt" class="prompt"></div></div>
+    <div id="soAns"></div>
+    <div id="soRes" class="card res" style="display:none"></div>
+    <button class="btn" id="soNext" style="display:none">التالي ←</button>
+    <button class="btn alt" id="soQuit">إنهاء</button>
+  </div>
+</div>
+  
+  <div id="game" class="screen">
   <div class="card">
     <div id="gScores" class="scores"></div>
     <div class="prog"><div id="gProg"></div></div>
